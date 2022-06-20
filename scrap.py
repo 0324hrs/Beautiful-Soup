@@ -39,6 +39,5 @@ def scrapper():
 # to save our movie data scrapped csv file
     movies_data.save("IMDB TOP RATED MOVIES.xlsx")
 
-
 if __name__ == '__main__':
     scrapper()
