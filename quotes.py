@@ -6,7 +6,7 @@ def quotes():
     quotes_data = openpyxl.Workbook()
     sheet = quotes_data.active
     sheet.title = "QUOTES TO SCRAP"
-    sheet.append(["QUOTE", "AUTHOR", "TAGS"])
+    sheet.append(["QUOTE", "AUTHOR", "TAGS", "AUTHOR DESCRIPTION"])
     try:
         quotes = requests.get(f"{quotes_link}/page/1/")
         quotes.raise_for_status()        
@@ -25,9 +25,9 @@ def scrappy(quotes, sheet):
         tags = ''.join([tag.text for  tag in quote.find('div', class_= "tags").find_all('a', class_= "tag")])
         about_page =requests.get(quotes_link + quote.select('span a')[0].get('href'))
         about_soup = BeautifulSoup(about_page.text, 'html.parser')
-        # author_description = about_soup.find('div', class_= "author-description").text.strip()
-        print(qoute, author, tags)
-        sheet.append([qoute, author, tags])
+        author_description = about_soup.find('div', class_= "author-description").text.strip()
+        print(qoute, author, tags, author_description)
+        sheet.append([qoute, author, tags, author_description])
             
     next_present =  soup.nav.ul.find('li', class_= 'next')
     if next_present is not None:
