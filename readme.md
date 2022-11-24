@@ -7,3 +7,4 @@ YIDIO
 QUOTES TO SCRAP
 
 All kenyan and southafrica betting sites
+.ke domains
